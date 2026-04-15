@@ -38,19 +38,19 @@ const App = () => (
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/chapter/1" element={<Chapter1 />} />
-            <Route path="/chapter/2" element={<Chapter2 />} />
-            <Route path="/chapter/3" element={<Chapter3 />} />
-            <Route path="/chapter/4" element={<Chapter4 />} />
-            <Route path="/chapter/5" element={<Chapter5 />} />
-            <Route path="/chapter/6" element={<Chapter6 />} />
-            <Route path="/chapter/7" element={<Chapter7 />} />
-            <Route path="/chapter/8" element={<Chapter8 />} />
-            <Route path="/chapter/9" element={<Chapter9 />} />
-            <Route path="/chapter/10" element={<Chapter10 />} />
-            <Route path="/chapter/11" element={<Chapter11 />} />
-            <Route path="/chapter/12" element={<Chapter12 />} />
-            <Route path="/chapter/13" element={<Chapter13 />} />
+            <Route path="/chapter/introduction-to-professional-ethics" element={<Chapter1 />} />
+            <Route path="/chapter/philosophy-ethics-and-applied-ethics" element={<Chapter2 />} />
+            <Route path="/chapter/code-of-ethics-and-rights" element={<Chapter3 />} />
+            <Route path="/chapter/common-computer-ethics-fallacies" element={<Chapter4 />} />
+            <Route path="/chapter/six-traditional-principles" element={<Chapter5 />} />
+            <Route path="/chapter/whistleblowing-guidance" element={<Chapter6 />} />
+            <Route path="/chapter/intellectual-property" element={<Chapter7 />} />
+            <Route path="/chapter/ip-strategy-and-practice" element={<Chapter8 />} />
+            <Route path="/chapter/software-development" element={<Chapter9 />} />
+            <Route path="/chapter/scalable-software-development" element={<Chapter10 />} />
+            <Route path="/chapter/social-networking" element={<Chapter11 />} />
+            <Route path="/chapter/privacy" element={<Chapter12 />} />
+            <Route path="/chapter/freedom-of-speech" element={<Chapter13 />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
