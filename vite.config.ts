@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+    base: "/professional-issues-and-ethics-for-computer-science/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

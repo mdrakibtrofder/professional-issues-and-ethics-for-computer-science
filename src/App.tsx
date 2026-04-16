@@ -34,7 +34,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/professional-issues-and-ethics-for-computer-science">
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Index />} />
