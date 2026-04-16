@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, QuoteCard, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, QuoteCard, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Brain, Scale, AlertTriangle, Users } from "lucide-react";
@@ -157,6 +157,20 @@ const Chapter2 = () => {
           <ExampleCard title="Government Culture" description="This culture focuses on strict compliance with established rules, regulations, and procedural correctness." />
         </div>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "What is Applied Ethics?", options: ["A branch of mathematics", "The practical application of ethical principles to real-world situations", "The study of ancient philosophy", "A type of programming paradigm"], correctIndex: 1, explanation: "Applied Ethics specifically evaluates the outcomes and consequences of moral decisions in real-world situations." },
+          { question: "What is a 'value conflict' in ethical decision-making?", options: ["A bug in software code", "A situation where one must choose between two legitimate but opposing values", "A disagreement about salary", "A conflict between two programming languages"], correctIndex: 1, explanation: "A value conflict involves choosing between two or more core values in direct opposition — often between two legitimate 'goods' rather than right vs. wrong." },
+          { question: "Which of the following is a 'fabrication' as a form of lie?", options: ["A joke told among friends", "A simplified explanation for non-technical people", "A statement not based on fact presented as truth", "A harmless white lie"], correctIndex: 2, explanation: "Fabrication is making a statement that is not based on fact, such as claiming work has been done when it hasn't." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A project manager discovers that a junior developer has been reporting '100% test coverage' in sprint reports, when in reality the tests only cover the happy path and ignore edge cases. The PM confronts the developer, who says 'Technically all my test files pass, so coverage is 100%.'",
+          question: "Which form of lie best describes the developer's behavior?",
+          options: ["White lie", "Lying by omission", "Bluffing", "Jocose lie"],
+          correctIndex: 1,
+          explanation: "This is lying by omission — leaving out the important fact that the tests don't cover edge cases. The developer's statement is technically true but deliberately misleading."
+        }}
+      />
     </CourseLayout>
   );
 };

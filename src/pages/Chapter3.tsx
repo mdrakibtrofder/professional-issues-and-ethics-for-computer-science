@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, QuizSection } from "@/components/ChapterComponents";
 
 const Chapter3 = () => {
   return (
@@ -34,6 +34,20 @@ const Chapter3 = () => {
           </ContentCard>
         </div>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "Which ACM principle emphasizes contributing to society and human well-being?", options: ["Professional Leadership Principles", "General Ethical Principles", "Compliance with the Code", "Professional Responsibilities"], correctIndex: 1, explanation: "General Ethical Principles include contributing to society, avoiding harm, being honest, and respecting others' work." },
+          { question: "What does the ACM Code say about violations?", options: ["They are acceptable if the intent was good", "They should be treated as inconsistent with ACM membership", "They only matter if caught", "They are handled by local law enforcement"], correctIndex: 1, explanation: "The ACM Code states that violations should be treated as inconsistent with membership in the ACM." },
+          { question: "Which principle area covers maintaining high standards of professional competence?", options: ["General Ethical Principles", "Professional Responsibilities", "Professional Leadership", "Compliance"], correctIndex: 1, explanation: "Professional Responsibilities include striving for high quality and maintaining competence in professional work." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A software engineer at a healthcare company is asked to deploy a patient management system ahead of schedule. The engineer knows the system hasn't been fully tested and could contain bugs that might display incorrect medication dosages. Management insists on the deadline to secure a government contract.",
+          question: "According to the ACM Code of Ethics, what should the engineer do?",
+          options: ["Deploy as requested since management made the decision", "Refuse to deploy and report the safety risk, as the code requires avoiding harm", "Deploy but add a disclaimer about potential errors", "Resign from the company immediately"],
+          correctIndex: 1,
+          explanation: "The ACM General Ethical Principles require professionals to avoid harm. Deploying untested healthcare software that could show incorrect dosages directly endangers patients."
+        }}
+      />
     </CourseLayout>
   );
 };

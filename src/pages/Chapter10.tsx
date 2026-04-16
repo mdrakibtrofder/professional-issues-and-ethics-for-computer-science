@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GitBranch, RefreshCw, Server, Zap } from "lucide-react";
 
@@ -98,6 +98,20 @@ const Chapter10 = () => {
           </p>
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "What does CI/CD stand for?", options: ["Computer Integration/Computer Delivery", "Continuous Integration/Continuous Delivery", "Code Inspection/Code Deployment", "Central Infrastructure/Central Database"], correctIndex: 1, explanation: "CI/CD stands for Continuous Integration and Continuous Delivery — automating the build, test, and deployment pipeline." },
+          { question: "What is a key advantage of microservices over monolithic architecture?", options: ["Simpler initial development", "Services can be scaled independently", "Lower network complexity", "Requires fewer developers"], correctIndex: 1, explanation: "Microservices allow scaling only the parts of the system under heavy load, optimizing resources and costs." },
+          { question: "What is the primary purpose of a load balancer?", options: ["To store data backups", "To distribute incoming requests across multiple servers", "To encrypt network traffic", "To monitor employee activity"], correctIndex: 1, explanation: "Load balancers distribute incoming requests across multiple servers to ensure high availability, reliability, and efficiency." },
+        ]}
+        scenarioQuestion={{
+          scenario: "An e-commerce company uses a monolithic architecture. During Black Friday, their checkout service crashes under heavy load, bringing down the entire website including product browsing, user accounts, and customer support chat. The CTO proposes migrating to microservices.",
+          question: "Why would microservices have prevented this total outage?",
+          options: ["Microservices are faster than monoliths", "Each service is independent — checkout crashing wouldn't affect product browsing or other services", "Microservices don't need servers", "Microservices automatically fix bugs"],
+          correctIndex: 1,
+          explanation: "In a microservices architecture, services are independent. A checkout crash would be isolated, while product browsing, accounts, and other services continue to function normally."
+        }}
+      />
     </CourseLayout>
   );
 };

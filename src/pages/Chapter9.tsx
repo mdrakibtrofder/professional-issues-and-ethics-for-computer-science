@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, QuizSection } from "@/components/ChapterComponents";
 import { Shield, Users, Scale, AlertTriangle } from "lucide-react";
 
 const Chapter9 = () => {
@@ -59,6 +59,20 @@ const Chapter9 = () => {
           </div>
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "What is a safety-critical system?", options: ["A system that costs a lot of money", "A system whose failure may cause human injury or death", "Any system used by the government", "A system with many users"], correctIndex: 1, explanation: "A safety-critical system is one whose failure may cause human injury or death, such as those controlling medical devices, airplanes, or nuclear reactors." },
+          { question: "Why is software quality important for business information systems?", options: ["It makes the code look better", "A software defect can result in lost customers and reduced revenue", "It is only important for large companies", "Quality only matters for open source software"], correctIndex: 1, explanation: "Accurate, thorough, and timely processing of business transactions is key. A software defect can be devastating, resulting in lost customers and reduced revenue." },
+          { question: "Which is NOT a strategy for engineering quality software?", options: ["Rigorous peer reviews", "Continuous testing", "Skipping documentation to save time", "User-centric design"], correctIndex: 2, explanation: "Skipping documentation is not a quality strategy. Proper strategies include peer reviews, continuous testing, agile refactoring, and user-centric design." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A medical device company is developing software for an insulin pump. During testing, a rare bug is found that could cause the pump to deliver double the prescribed dosage under specific conditions that occur in roughly 1 in 10,000 uses. The project is already 3 months behind schedule and over budget. Management wants to ship with a known-issue note.",
+          question: "What should the development team do?",
+          options: ["Ship with the known-issue note as management suggests", "Refuse to ship until the bug is fixed, as this is a safety-critical system", "Ship and plan a patch for the next release", "Let the marketing team decide"],
+          correctIndex: 1,
+          explanation: "This is a safety-critical system where failure could cause serious injury or death. The team must refuse to ship until the critical bug is fixed, regardless of schedule or budget pressures."
+        }}
+      />
     </CourseLayout>
   );
 };

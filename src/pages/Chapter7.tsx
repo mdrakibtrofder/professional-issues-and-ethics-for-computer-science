@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, KeyPoints, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, KeyPoints, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const Chapter7 = () => {
@@ -110,6 +110,20 @@ const Chapter7 = () => {
           ]} />
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "How long does copyright protection last for works created after January 1, 1978?", options: ["50 years from publication", "Life of the author plus 70 years", "20 years from creation", "Indefinitely"], correctIndex: 1, explanation: "For works created after January 1, 1978, copyright protection endures for the life of the author plus 70 years." },
+          { question: "What is the key difference between a patent and a copyright?", options: ["Patents are free, copyrights cost money", "A patent prevents independent creation; copyright only prevents copying", "Copyrights last longer than patents", "There is no difference"], correctIndex: 1, explanation: "Unlike copyright, a patent prevents independent creation — even if someone invents the same thing independently, they cannot use it without the patent holder's permission." },
+          { question: "A trade secret has no expiration as long as:", options: ["It is registered with the government", "It is kept confidential", "It is published in a journal", "It is patented simultaneously"], correctIndex: 1, explanation: "Trade secret protection can last forever, but only as long as the information is kept confidential through NDAs and security measures." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A programmer finds a perfectly written authentication function on a public GitHub repository. The repository has no LICENSE file, no README, and the owner hasn't been active for 3 years. The programmer's deadline is tomorrow and the function would save hours of work.",
+          question: "What is the ethically and legally correct action?",
+          options: ["Copy it — if it's public on GitHub, it's free to use", "Copy it and credit the original author in a comment", "Assume it is copyrighted and either contact the owner or write an original version", "Fork the entire repository to make it look like a contribution"],
+          correctIndex: 2,
+          explanation: "Under the 'No Free Lunch' rule and copyright law, absence of a license means the code is copyrighted by default. The programmer must contact the owner or find properly licensed alternatives."
+        }}
+      />
     </CourseLayout>
   );
 };

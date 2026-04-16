@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 
 const rules = [
   {
@@ -63,6 +63,20 @@ const Chapter5 = () => {
           </ContentCard>
         </TopicSection>
       ))}
+      <QuizSection
+        questions={[
+          { question: "The Golden Rule asks you to:", options: ["Always follow the law", "Put yourself in the position of others affected by your decisions", "Maximize company profit", "Follow your manager's instructions"], correctIndex: 1, explanation: "The Golden Rule requires putting yourself in the position of others to understand the consequences of your decisions." },
+          { question: "Kant's Categorical Imperative states an action is ethical only if:", options: ["It benefits the most people", "It can be established as a universal law", "It avoids all risk", "It is legal in your country"], correctIndex: 1, explanation: "An action is ethical only if it can be established as a universal law for everyone in a similar situation." },
+          { question: "The Risk Aversion Principle says to:", options: ["Avoid all technology projects", "Choose the path producing the least potential damage", "Never take any risks", "Always choose the cheapest option"], correctIndex: 1, explanation: "Risk Aversion dictates choosing the path that produces the least potential damage or cost to stakeholders." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A bank discovers a critical security vulnerability in their online banking system on a Friday afternoon. Patching it immediately would cause 2 hours of downtime during peak hours, affecting thousands of customers. Waiting until Monday would minimize disruption but leaves the system exposed to potential data breaches all weekend.",
+          question: "Which ethical principle most directly applies, and what should the bank do?",
+          options: ["Utilitarian Principle — wait until Monday to minimize customer inconvenience", "Risk Aversion Principle — patch immediately since a data breach is catastrophic", "Golden Rule — ask customers to vote on the timing", "No Free Lunch — charge customers for the extra security"],
+          correctIndex: 1,
+          explanation: "The Risk Aversion Principle dictates patching immediately. While 2 hours of downtime is costly, a total data breach over the weekend would be catastrophic and irreversible."
+        }}
+      />
     </CourseLayout>
   );
 };
