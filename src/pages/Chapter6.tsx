@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Shield, FileText, Eye, Users, Scale, Lock } from "lucide-react";
 
@@ -109,6 +109,20 @@ const Chapter6 = () => {
           ]} />
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "What is the primary difference between whistleblowing and a grievance?", options: ["Whistleblowing is anonymous, grievances are not", "Whistleblowing concerns public interest issues, grievances are personal complaints", "Grievances are more serious than whistleblowing", "There is no difference"], correctIndex: 1, explanation: "Whistleblowing involves concerns affecting others (fraud, safety), while grievances are personal complaints like pay disputes." },
+          { question: "What is the employer's primary responsibility regarding whistleblowers?", options: ["Terminate them to protect the company", "Protect them from detriment or unfair treatment", "Ignore anonymous reports", "Report them to law enforcement"], correctIndex: 1, explanation: "Employers must ensure whistleblowers are protected from detriment or unfair treatment as a result of their disclosure." },
+          { question: "Why is confidentiality critical in whistleblowing?", options: ["To hide evidence from regulators", "To protect the whistleblower's identity and encourage reporting", "To prevent the media from finding out", "To delay the investigation"], correctIndex: 1, explanation: "Confidentiality protects the whistleblower's identity, encouraging honest reporting without fear of retaliation." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A junior developer at a fintech company discovers that the lead engineer has been deliberately bypassing security protocols to speed up transaction processing. This has not yet caused a breach, but the developer believes it puts millions of customer accounts at risk. The lead engineer is also the developer's direct supervisor and mentor.",
+          question: "What is the most ethical course of action for the junior developer?",
+          options: ["Confront the lead engineer privately and hope they fix it", "Ignore it since no breach has occurred yet", "Report the concern through the company's whistleblowing procedure", "Post about it anonymously on social media"],
+          correctIndex: 2,
+          explanation: "The developer should use the company's formal whistleblowing procedure. This ensures the concern is documented, investigated impartially, and the developer is protected from retaliation."
+        }}
+      />
     </CourseLayout>
   );
 };

@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, QuoteCard, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, InfoCard, KeyPoints, QuoteCard, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { GraduationCap, Users, Shield, Award } from "lucide-react";
@@ -150,6 +150,20 @@ const Chapter1 = () => {
           </AccordionItem>
         </Accordion>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "What distinguishes a profession from a vocation?", options: ["Higher salary", "Extensive training, ethical codes, and regulation by governing bodies", "Working in an office", "Having a university degree"], correctIndex: 1, explanation: "A profession requires extensive training, adherence to ethical codes, and regulation by professional bodies, unlike a vocation which is more of a calling or aptitude." },
+          { question: "Which of the following is a recognized professional body for IT professionals?", options: ["FIFA", "BCS (British Computer Society)", "WHO", "UNESCO"], correctIndex: 1, explanation: "BCS is the leading professional body for IT professionals, granting Chartered IT Professional (CITP) status." },
+          { question: "What does CPD stand for in a professional context?", options: ["Corporate Product Development", "Continuous Professional Development", "Computer Programming Diploma", "Certified Professional Degree"], correctIndex: 1, explanation: "CPD stands for Continuous Professional Development — the ongoing process of developing skills and knowledge throughout a career." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A software company hires a talented self-taught developer who has no formal degree or professional membership. The developer writes excellent code but refuses to follow the company's code of conduct, saying 'I'm not a member of any professional body, so codes of ethics don't apply to me.'",
+          question: "What is the most appropriate response to this situation?",
+          options: ["Accept the developer's argument since they have no formal obligations", "Explain that professional conduct applies to all employees regardless of formal membership", "Fire the developer immediately", "Ignore the situation as long as the code quality remains high"],
+          correctIndex: 1,
+          explanation: "Professional conduct and ethical behavior are expected of all computing practitioners, not just those with formal memberships. Workplace codes of conduct apply to all employees."
+        }}
+      />
     </CourseLayout>
   );
 };

@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, KeyPoints, InfoCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, KeyPoints, InfoCard, QuizSection } from "@/components/ChapterComponents";
 import { Lock, Shield, Eye, Users, Scan, Database } from "lucide-react";
 
 const Chapter12 = () => {
@@ -100,6 +100,20 @@ const Chapter12 = () => {
           ]} />
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "Information privacy is the combination of:", options: ["Data encryption and firewalls", "Communications privacy and data privacy", "Physical security and digital security", "Network security and application security"], correctIndex: 1, explanation: "Information privacy combines communications privacy (monitoring-free communication) and data privacy (limiting access to personal data)." },
+          { question: "Data breaches are most often caused by:", options: ["Sophisticated hacking attacks only", "Carelessness or failure to follow proper security procedures", "Natural disasters", "Hardware failures"], correctIndex: 1, explanation: "While hacking causes some breaches, data breaches are more often caused by carelessness or failure to follow proper security procedures." },
+          { question: "Consumer profiling raises ethical concerns because:", options: ["It makes websites load slower", "It creates detailed behavioral portraits and risks discrimination", "It is always illegal", "It only affects businesses"], correctIndex: 1, explanation: "Consumer profiling merges data from various platforms to create detailed behavioral portraits, raising concerns about discrimination and loss of anonymity." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A company implements AI-powered surveillance cameras with facial recognition in their office to 'improve security.' Employees were not informed. The system tracks when employees arrive, leave, take breaks, and who they interact with. An employee discovers the system and raises concerns.",
+          question: "What are the primary ethical violations in this scenario?",
+          options: ["No violation — the company owns the premises", "Lack of informed consent, excessive monitoring, and erosion of employee trust", "The only issue is the AI technology being used", "It's only a problem if the data is shared externally"],
+          correctIndex: 1,
+          explanation: "The company violated multiple ethical principles: no informed consent was obtained, the monitoring is excessive relative to the stated purpose, and covert surveillance erodes trust and workplace morale."
+        }}
+      />
     </CourseLayout>
   );
 };

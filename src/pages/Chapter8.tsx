@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, KeyPoints, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, KeyPoints, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 
 const Chapter8 = () => {
   return (
@@ -77,6 +77,20 @@ const Chapter8 = () => {
           ]} />
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "What is the primary purpose of reverse engineering in software?", options: ["To steal competitor's code", "To understand, copy, or improve an existing system", "To destroy legacy systems", "To avoid writing documentation"], correctIndex: 1, explanation: "Reverse engineering is the process of taking something apart to understand it, build a copy, or improve it — often for interoperability or maintenance purposes." },
+          { question: "What is a key advantage of open source code?", options: ["It is always free of bugs", "Bugs can be rapidly identified and fixed by the community", "It requires no license at all", "It cannot be modified"], correctIndex: 1, explanation: "Open source allows many programmers to read, redistribute, and modify code, leading to rapid bug identification and improvement." },
+          { question: "Competitive intelligence is:", options: ["Corporate espionage", "Legally obtained information to help a company gain advantage", "Hacking into competitor systems", "Insider trading"], correctIndex: 1, explanation: "Competitive intelligence involves legally gathering and analyzing publicly available information to gain a business advantage." },
+        ]}
+        scenarioQuestion={{
+          scenario: "Your company wants to build a product that integrates with a competitor's proprietary file format. The competitor refuses to share their format specification. Your team proposes reverse engineering the file format by analyzing sample files to achieve interoperability.",
+          question: "Is this reverse engineering ethically and legally justified?",
+          options: ["No — reverse engineering is always illegal", "Yes — reverse engineering for interoperability is a legitimate and commonly accepted purpose", "Only if you do it secretly", "Only if you pay the competitor a fee"],
+          correctIndex: 1,
+          explanation: "Reverse engineering for interoperability is one of the most widely accepted legitimate purposes. Many jurisdictions explicitly protect this right to ensure healthy competition."
+        }}
+      />
     </CourseLayout>
   );
 };

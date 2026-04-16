@@ -1,5 +1,5 @@
 import { CourseLayout } from "@/components/CourseLayout";
-import { ChapterHero, TopicSection, ContentCard, KeyPoints, ExampleCard } from "@/components/ChapterComponents";
+import { ChapterHero, TopicSection, ContentCard, KeyPoints, ExampleCard, QuizSection } from "@/components/ChapterComponents";
 
 const Chapter13 = () => {
   return (
@@ -86,6 +86,20 @@ const Chapter13 = () => {
           ]} />
         </ContentCard>
       </TopicSection>
+      <QuizSection
+        questions={[
+          { question: "Freedom of speech is recognized as:", options: ["An absolute right with no limits", "A fundamental human right in international law", "Only applicable in the United States", "A privilege granted by employers"], correctIndex: 1, explanation: "Freedom of speech is recognized as a fundamental human right in international law and is a cornerstone of democratic societies." },
+          { question: "What is the difference between slander and libel?", options: ["Slander is written, libel is spoken", "Slander is spoken defamation, libel is written or recorded defamation", "They are the same thing", "Slander is illegal, libel is not"], correctIndex: 1, explanation: "Slander is spoken defamation (fleeting), while libel is written or recorded defamation (permanent and easily shared), which courts often view as more harmful." },
+          { question: "Internet censorship can include:", options: ["Only blocking websites", "Limiting access, filtering content, tracking activities, and jailing individuals", "Only government actions", "Only corporate policies"], correctIndex: 1, explanation: "Internet censorship takes many forms including limiting website access, filtering content, monitoring activities, and even jailing individuals for their Internet use." },
+        ]}
+        scenarioQuestion={{
+          scenario: "A social media platform hosts a community where members share health information. A user begins posting anti-vaccination content containing verifiably false medical claims that vaccines cause autism. The posts are gaining thousands of shares. Some users demand the content be removed, while others argue it's protected free speech.",
+          question: "What should the platform do?",
+          options: ["Remove all the posts immediately — false medical information is dangerous", "Do nothing — all speech must be protected equally", "Add factual context labels and link to verified medical sources while keeping the posts visible", "Ban the user permanently without explanation"],
+          correctIndex: 2,
+          explanation: "Adding factual context while keeping posts visible balances free speech with public safety. Outright removal may trigger censorship concerns, while doing nothing risks public health harm from misinformation."
+        }}
+      />
     </CourseLayout>
   );
 };
