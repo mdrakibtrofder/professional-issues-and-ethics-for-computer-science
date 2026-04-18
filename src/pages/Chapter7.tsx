@@ -116,13 +116,43 @@ const Chapter7 = () => {
           { question: "What is the key difference between a patent and a copyright?", options: ["Patents are free, copyrights cost money", "A patent prevents independent creation; copyright only prevents copying", "Copyrights last longer than patents", "There is no difference"], correctIndex: 1, explanation: "Unlike copyright, a patent prevents independent creation — even if someone invents the same thing independently, they cannot use it without the patent holder's permission." },
           { question: "A trade secret has no expiration as long as:", options: ["It is registered with the government", "It is kept confidential", "It is published in a journal", "It is patented simultaneously"], correctIndex: 1, explanation: "Trade secret protection can last forever, but only as long as the information is kept confidential through NDAs and security measures." },
         ]}
-        scenarioQuestion={{
-          scenario: "A programmer finds a perfectly written authentication function on a public GitHub repository. The repository has no LICENSE file, no README, and the owner hasn't been active for 3 years. The programmer's deadline is tomorrow and the function would save hours of work.",
-          question: "What is the ethically and legally correct action?",
-          options: ["Copy it — if it's public on GitHub, it's free to use", "Copy it and credit the original author in a comment", "Assume it is copyrighted and either contact the owner or write an original version", "Fork the entire repository to make it look like a contribution"],
-          correctIndex: 2,
-          explanation: "Under the 'No Free Lunch' rule and copyright law, absence of a license means the code is copyrighted by default. The programmer must contact the owner or find properly licensed alternatives."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "A programmer finds a perfectly written authentication function on a public GitHub repository. The repository has no LICENSE file, no README, and the owner hasn't been active for 3 years. The programmer's deadline is tomorrow and the function would save hours of work.",
+            question: "What is the ethically and legally correct action?",
+            options: ["Copy it — if it's public on GitHub, it's free to use", "Copy it and credit the original author in a comment", "Assume it is copyrighted and either contact the owner or write an original version", "Fork the entire repository to make it look like a contribution"],
+            correctIndex: 2,
+            explanation: "Under the 'No Free Lunch' rule and copyright law, absence of a license means the code is copyrighted by default. The programmer must contact the owner or find properly licensed alternatives."
+          },
+          {
+            scenario: "A startup builds a unique data-compression algorithm. The CTO must decide whether to file a patent (publicly disclosing the technique for 20-year exclusivity) or keep it as a trade secret (potentially forever, but only if kept confidential).",
+            question: "Which factor most favours choosing a trade secret over a patent?",
+            options: ["The algorithm is easy to reverse-engineer from the product", "The algorithm cannot easily be reverse-engineered, and confidentiality can be reliably maintained", "The startup wants to publish a research paper about it", "Competitors are about to file a similar patent"],
+            correctIndex: 1,
+            explanation: "Trade secrets only work if confidentiality can be maintained and the secret can't easily be reverse-engineered. Otherwise a patent (with its disclosure but legal exclusivity) is safer."
+          },
+          {
+            scenario: "A graduate student copies several paragraphs from an online article into their thesis without quotation marks or citation, paraphrasing only slightly. They argue that since the original is freely available online, no harm is done.",
+            question: "Which IP/ethical issue is this?",
+            options: ["Patent infringement", "Plagiarism — presenting another's work or ideas as one's own without attribution", "Trademark dilution", "Cross-licensing"],
+            correctIndex: 1,
+            explanation: "Plagiarism is the unattributed use of another's work or ideas. It is unethical regardless of whether the source is free or paid, and may also be a copyright infringement."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "Compare copyright, patent, and trade secret as forms of intellectual property protection for software.",
+            answer: "Copyright protects the original expression of an idea (e.g., source code, documentation, UI artwork) the moment it is fixed in tangible form. It prevents copying but not independent creation. For works after 1 Jan 1978 it lasts the life of the author plus 70 years. Registration is optional but strengthens enforcement.\n\nPatents protect novel, non-obvious, useful inventions — including some software algorithms and processes in many jurisdictions. A patent grants 20 years of exclusivity, prevents even independent reinvention, but requires a costly application and full public disclosure of the invention.\n\nTrade secrets protect confidential business information that gives a competitive edge (algorithms, customer lists, internal processes). Protection is potentially indefinite but only lasts as long as secrecy is maintained through NDAs, access controls, and security measures. There is no protection against independent discovery or lawful reverse engineering.\n\nIn software practice, copyright covers the code itself, patents may cover key inventive techniques, and trade secrets often cover internal know-how. Choosing among them depends on whether disclosure is acceptable, how easily competitors can reproduce the work, the cost of enforcement, and the desired duration of protection."
+          },
+          {
+            question: "Discuss copyright duration, software copyright protection, and the role of cross-licensing agreements.",
+            answer: "Copyright duration: For works created after 1 Jan 1978 in the US, protection lasts the life of the author plus 70 years; for corporate works, 95 years from publication or 120 years from creation, whichever is shorter. Most other countries follow similar life-plus-70 terms under the Berne Convention.\n\nSoftware copyright protection: Source code, object code, screen displays, documentation, and even some structural aspects of programs are protected by copyright. Protection is automatic upon creation but rights are clarified by license terms (proprietary, MIT, GPL, etc.). Copyright does not protect ideas, algorithms, or functionality — only their specific expression — which is why competitors can build similar products if they don't copy the actual code.\n\nCross-licensing agreements: Two or more parties grant each other licenses to use specified intellectual property. They are common when companies hold overlapping patent portfolios — instead of suing each other, they trade rights, often with cash adjustments. Benefits include avoiding costly litigation, enabling innovation that would otherwise be blocked by patent thickets, accelerating standards adoption, and reducing legal risk. Risks include potential anti-competitive behaviour and exclusion of smaller players who lack patents to trade. Well-structured cross-licensing can promote innovation; poorly structured agreements can entrench incumbents."
+          },
+          {
+            question: "Define plagiarism and discuss its consequences in academic and professional computing contexts.",
+            answer: "Plagiarism is the act of presenting another person's words, ideas, code, designs, or other work as one's own without proper attribution. It includes copy-paste without quotation, light paraphrasing without citation, submitting another's work as one's own, self-plagiarism (reusing one's own past work without disclosure), and unattributed use of generated content.\n\nIn academic contexts, consequences can include failing the assignment or course, suspension, expulsion, revocation of degrees, and lasting reputational damage. Universities use detection tools (Turnitin, MOSS for code) and have formal misconduct procedures.\n\nIn professional computing contexts, plagiarism takes additional forms — copying code from Stack Overflow, GitHub, AI assistants, or competitors without attribution or license compliance. Consequences include copyright-infringement lawsuits, breach of license terms (especially copyleft licenses like GPL), termination of employment, loss of professional certifications, reputational damage to the company, and erosion of personal credibility within the open-source community. Even attribution is not enough if the original license is incompatible with the intended use.\n\nProfessional ethics codes (BCS, ACM, IEEE) all explicitly require honest attribution. Best practice is to (1) understand the license of every external source; (2) attribute and quote properly; (3) prefer original work where feasible; (4) keep records of sources; and (5) when in doubt, ask permission or write it yourself."
+          }
+        ]}
       />
     </CourseLayout>
   );
