@@ -69,13 +69,43 @@ const Chapter5 = () => {
           { question: "Kant's Categorical Imperative states an action is ethical only if:", options: ["It benefits the most people", "It can be established as a universal law", "It avoids all risk", "It is legal in your country"], correctIndex: 1, explanation: "An action is ethical only if it can be established as a universal law for everyone in a similar situation." },
           { question: "The Risk Aversion Principle says to:", options: ["Avoid all technology projects", "Choose the path producing the least potential damage", "Never take any risks", "Always choose the cheapest option"], correctIndex: 1, explanation: "Risk Aversion dictates choosing the path that produces the least potential damage or cost to stakeholders." },
         ]}
-        scenarioQuestion={{
-          scenario: "A bank discovers a critical security vulnerability in their online banking system on a Friday afternoon. Patching it immediately would cause 2 hours of downtime during peak hours, affecting thousands of customers. Waiting until Monday would minimize disruption but leaves the system exposed to potential data breaches all weekend.",
-          question: "Which ethical principle most directly applies, and what should the bank do?",
-          options: ["Utilitarian Principle — wait until Monday to minimize customer inconvenience", "Risk Aversion Principle — patch immediately since a data breach is catastrophic", "Golden Rule — ask customers to vote on the timing", "No Free Lunch — charge customers for the extra security"],
-          correctIndex: 1,
-          explanation: "The Risk Aversion Principle dictates patching immediately. While 2 hours of downtime is costly, a total data breach over the weekend would be catastrophic and irreversible."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "A bank discovers a critical security vulnerability in their online banking system on a Friday afternoon. Patching it immediately would cause 2 hours of downtime during peak hours, affecting thousands of customers. Waiting until Monday would minimize disruption but leaves the system exposed to potential data breaches all weekend.",
+            question: "Which ethical principle most directly applies, and what should the bank do?",
+            options: ["Utilitarian Principle — wait until Monday to minimize customer inconvenience", "Risk Aversion Principle — patch immediately since a data breach is catastrophic", "Golden Rule — ask customers to vote on the timing", "No Free Lunch — charge customers for the extra security"],
+            correctIndex: 1,
+            explanation: "The Risk Aversion Principle dictates patching immediately. While 2 hours of downtime is costly, a total data breach over the weekend would be catastrophic and irreversible."
+          },
+          {
+            scenario: "A developer is tempted to use a clever loophole in a SaaS provider's API that allows running unlimited free queries. They reason, 'If I do it, no one else will notice — and the company has plenty of money.'",
+            question: "Which principle most clearly forbids this behavior?",
+            options: ["The Golden Rule", "Kant's Categorical Imperative — would it be acceptable if everyone exploited the loophole?", "Risk Aversion Principle", "Descartes' Rule of Change"],
+            correctIndex: 1,
+            explanation: "Kant's Categorical Imperative tests whether the action could be a universal law. If every developer exploited the loophole, the provider would collapse — therefore the action is unethical."
+          },
+          {
+            scenario: "A team is offered a free, well-maintained open-source library that solves a critical part of their commercial product. They plan to use it without contributing back, donating, or even acknowledging the maintainers.",
+            question: "Which principle is being violated?",
+            options: ["The Golden Rule and the Ethical 'No Free Lunch' Rule — value received should be acknowledged or compensated", "Risk Aversion Principle", "Descartes' Rule of Change", "None — open source means free with no obligations"],
+            correctIndex: 0,
+            explanation: "The 'No Free Lunch' rule states that everything of value has a cost paid by someone. Combined with the Golden Rule, ethical use of open source involves attribution, contribution, or sponsorship — not silent extraction."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "Compare and contrast Kant's Categorical Imperative and the Utilitarian Principle in the context of computing decisions.",
+            answer: "Kant's Categorical Imperative judges actions by their universalizability: an action is ethical only if you would be willing for it to become a universal law for everyone in similar situations. It focuses on duty and the inherent rightness of the act, regardless of outcome. Example: a developer asks 'Is it acceptable for every developer to ship untested code under deadline pressure?' — clearly no, so it's unethical.\n\nThe Utilitarian Principle judges actions by their consequences: the right action produces the greatest good for the greatest number. It focuses on outcomes rather than intent. Example: a team weighs whether deploying a feature benefits more users than it harms.\n\nContrast: Kant ignores consequences and forbids using people merely as means; utilitarianism may justify harming a few for the benefit of many. In computing, Kant protects against systematic exploitation (privacy, dignity), while utilitarianism guides resource trade-offs (which feature benefits the most users). Mature ethical reasoning often uses both — utilitarianism to weigh impact, Kant to set non-negotiable limits."
+          },
+          {
+            question: "Explain Descartes' Rule of Change (the Slippery Slope) and apply it to a contemporary computing example.",
+            answer: "Descartes' Rule of Change states that if an action cannot be repeated indefinitely without negative consequences, it should not be taken at all — even once. It guards against 'small' compromises that, when accumulated, lead to large harms.\n\nApplication: A company allows one engineer to copy a small piece of competitor code 'just this once'. If that practice were repeated by every engineer in every project, the company would systematically infringe IP, lose lawsuits, and destroy its reputation. Therefore the first instance should also be refused.\n\nAnother example: a social platform relaxes its content-moderation policy 'only for trusted political figures'. Repeated indefinitely, the rule erodes overall standards, normalizing misinformation. Descartes' Rule would refuse the first exception. The principle is especially relevant to data collection, surveillance, and minor security shortcuts in computing — practices whose individual harm seems small but whose cumulative effect is severe."
+          },
+          {
+            question: "Discuss the Ethical 'No Free Lunch' Rule and its relevance to software development today.",
+            answer: "The Ethical 'No Free Lunch' Rule states that virtually all tangible and intangible objects are owned by someone and that the creator deserves compensation or recognition for their work. Nothing is truly free — someone always pays the cost.\n\nIn software development, this principle is especially relevant because: (1) source code, designs, datasets, and trained ML models are easily copied but expensive to create; (2) open-source software, while free of license fees, depends on volunteer maintainers whose work is often invisible — abusing it without contribution is a form of free-riding; (3) cloud services, APIs, and SaaS tools rely on usage-based pricing that should not be circumvented; and (4) user attention and personal data are also 'currencies' — products that monetize them must do so transparently and ethically.\n\nApplied properly, the rule pushes professionals to license code correctly, attribute open-source contributions, sponsor critical projects, respect API terms of service, and design business models that fairly compensate creators rather than exploit invisible labor."
+          }
+        ]}
       />
     </CourseLayout>
   );

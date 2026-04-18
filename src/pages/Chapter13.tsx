@@ -92,13 +92,43 @@ const Chapter13 = () => {
           { question: "What is the difference between slander and libel?", options: ["Slander is written, libel is spoken", "Slander is spoken defamation, libel is written or recorded defamation", "They are the same thing", "Slander is illegal, libel is not"], correctIndex: 1, explanation: "Slander is spoken defamation (fleeting), while libel is written or recorded defamation (permanent and easily shared), which courts often view as more harmful." },
           { question: "Internet censorship can include:", options: ["Only blocking websites", "Limiting access, filtering content, tracking activities, and jailing individuals", "Only government actions", "Only corporate policies"], correctIndex: 1, explanation: "Internet censorship takes many forms including limiting website access, filtering content, monitoring activities, and even jailing individuals for their Internet use." },
         ]}
-        scenarioQuestion={{
-          scenario: "A social media platform hosts a community where members share health information. A user begins posting anti-vaccination content containing verifiably false medical claims that vaccines cause autism. The posts are gaining thousands of shares. Some users demand the content be removed, while others argue it's protected free speech.",
-          question: "What should the platform do?",
-          options: ["Remove all the posts immediately — false medical information is dangerous", "Do nothing — all speech must be protected equally", "Add factual context labels and link to verified medical sources while keeping the posts visible", "Ban the user permanently without explanation"],
-          correctIndex: 2,
-          explanation: "Adding factual context while keeping posts visible balances free speech with public safety. Outright removal may trigger censorship concerns, while doing nothing risks public health harm from misinformation."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "A social media platform hosts a community where members share health information. A user begins posting anti-vaccination content containing verifiably false medical claims that vaccines cause autism. The posts are gaining thousands of shares. Some users demand the content be removed, while others argue it's protected free speech.",
+            question: "What should the platform do?",
+            options: ["Remove all the posts immediately — false medical information is dangerous", "Do nothing — all speech must be protected equally", "Add factual context labels and link to verified medical sources while keeping the posts visible", "Ban the user permanently without explanation"],
+            correctIndex: 2,
+            explanation: "Adding factual context while keeping posts visible balances free speech with public safety. Outright removal may trigger censorship concerns, while doing nothing risks public health harm from misinformation."
+          },
+          {
+            scenario: "A blogger publishes a detailed article accusing a named local restaurant of using expired meat. The blogger has no evidence and refuses to retract the claim after the restaurant denies it and presents inspection reports.",
+            question: "Which legal/ethical issue is most clearly raised?",
+            options: ["Copyright infringement", "Defamation — specifically libel, since the false statement is in written form and damages the restaurant's reputation", "Patent law", "Net neutrality"],
+            correctIndex: 1,
+            explanation: "Publishing false statements of fact in writing that damage a person's or business's reputation is libel. Free speech does not protect knowingly or recklessly false defamatory statements."
+          },
+          {
+            scenario: "An online forum allows fully anonymous accounts so whistleblowers, abuse survivors, and dissidents can speak safely. However, anonymous accounts are also being used to coordinate targeted harassment of named individuals.",
+            question: "What is the most balanced policy response?",
+            options: ["Ban all anonymity completely", "Allow anonymity but actively moderate to remove targeted harassment, doxxing, and coordinated abuse", "Allow anonymity with no moderation", "Reveal the identity of every anonymous user publicly"],
+            correctIndex: 1,
+            explanation: "Anonymity protects vulnerable speakers and is a recognised right, but it is not a shield for harassment. Strong moderation against specific abusive behaviours preserves both safety and the legitimate benefits of anonymity."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "Why is freedom of speech considered a fundamental right, and what limits are commonly placed on it?",
+            answer: "Freedom of speech is recognised in international law (e.g., Article 19 of the Universal Declaration of Human Rights) as a fundamental right because it is essential to individual autonomy, democratic participation, the search for truth, the accountability of governments and institutions, and the flourishing of art, science, and religion. Without it, oppression, ignorance, and corruption thrive unchecked.\n\nHowever, no society treats free speech as absolute. Common limits include: (1) Defamation — false statements of fact that damage reputation; (2) Incitement to violence or imminent lawless action; (3) True threats and harassment; (4) Hate speech in many jurisdictions, especially when it incites discrimination or violence against protected groups; (5) Child sexual abuse material; (6) Fraud and false advertising; (7) Disclosure of classified or genuinely confidential information; (8) Copyright and trademark protections; and (9) Time, place, and manner restrictions (e.g., noise ordinances). Liberal democracies attempt to draw these limits as narrowly as possible, applying them through transparent law and independent courts rather than arbitrary censorship."
+          },
+          {
+            question: "Differentiate slander and libel and discuss why this distinction matters online.",
+            answer: "Slander is spoken defamation — a false statement of fact made verbally that damages someone's reputation. Because speech is fleeting and often heard by limited audiences, slander has historically been viewed as causing less long-term harm and is harder to prove and quantify in court.\n\nLibel is written or recorded defamation — including blog posts, news articles, social-media posts, videos, and even reviews. Because it is permanent and easily shared, it can reach vast audiences and continue causing harm long after publication; courts therefore typically view libel as more serious.\n\nThe distinction matters greatly online because almost everything published on the internet — tweets, comments, reviews, blog posts, videos — is technically libel, not slander. A single careless post can be seen by millions, indexed by search engines for years, and re-shared globally. As a result: (1) ordinary users face real legal risk for online posts; (2) the burden of proof and damages may be higher than for spoken statements; (3) platforms have complex responsibilities around hosting potentially defamatory content; and (4) responsible online behaviour requires fact-checking before publishing, especially when naming individuals or businesses."
+          },
+          {
+            question: "Discuss internet censorship, anonymity, and hate speech, and the difficulty of balancing them.",
+            answer: "Internet censorship can take many forms: limiting access to specific websites, filtering search results, slowing down connections, monitoring activities, criminalising certain speech, and even jailing individuals for what they post. Censorship may be government-imposed (in authoritarian regimes or, more narrowly, in democracies for illegal content), corporate (platform moderation policies), or self-imposed (chilling effect).\n\nAnonymity on the internet protects whistleblowers, abuse survivors, dissidents, and people exploring sensitive identities. It encourages honest expression, supports vulnerable groups, and is a long-standing tradition (pseudonymous publication has shaped political thought for centuries). However, anonymity also enables harassment, fraud, and coordinated abuse with reduced accountability.\n\nHate speech — speech that attacks people on the basis of race, religion, ethnicity, gender, sexual orientation, disability, or similar attributes — is particularly difficult. Many countries prohibit it because it can incite violence, marginalise communities, and silence the very groups free speech is meant to empower. Other countries (notably the US) protect most hate speech under the First Amendment, intervening only when it crosses into true threats or incitement.\n\nBalancing them requires nuanced, context-aware policies: protect anonymity while combating abuse through moderation rather than identity exposure; limit censorship to narrowly defined categories of clearly harmful speech, applied transparently and consistently; recognise that platform moderation is not government censorship but is still powerful and must be accountable; design appeals processes; and prioritise counter-speech, fact-checking, media literacy, and platform design changes over outright bans wherever feasible. Reasonable people will disagree on where each line falls — which is itself a hallmark of a free society."
+          }
+        ]}
       />
     </CourseLayout>
   );
