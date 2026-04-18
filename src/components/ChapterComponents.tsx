@@ -226,53 +226,102 @@ export function QuizSection({ questions, scenarioQuestion, scenarioQuestions, lo
         })}
       </div>
 
-      {/* Scenario-based question */}
-      <div className="bg-card rounded-xl border-2 border-primary/20 p-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Brain className="w-5 h-5 text-primary" />
-          <span className="font-heading font-semibold text-foreground">Scenario-Based Question</span>
-        </div>
-        <div className="bg-primary/5 rounded-lg p-4 mb-4">
-          <p className="text-sm text-foreground leading-relaxed">{scenarioQuestion.scenario}</p>
-        </div>
-        <p className="font-medium text-foreground mb-3">{scenarioQuestion.question}</p>
-        <div className="space-y-2 mb-3">
-          {scenarioQuestion.options.map((opt, oIdx) => {
-            let cls = "border border-border bg-muted/30 hover:bg-muted/60";
-            if (scenarioRevealed && oIdx === scenarioQuestion.correctIndex) cls = "border-green-500 bg-green-50 text-green-800";
-            else if (scenarioRevealed && oIdx === scenarioAnswer && oIdx !== scenarioQuestion.correctIndex) cls = "border-red-400 bg-red-50 text-red-700";
-            else if (scenarioAnswer === oIdx && !scenarioRevealed) cls = "border-primary bg-primary/10";
+      {/* Scenario-based questions */}
+      {allScenarios.length > 0 && (
+        <div className="space-y-4 mb-6">
+          {allScenarios.map((sq, sIdx) => {
+            const sAnswer = scenarioAnswers[sIdx];
+            const sRevealed = scenarioRevealed[sIdx];
             return (
-              <button
-                key={oIdx}
-                onClick={() => !scenarioRevealed && setScenarioAnswer(oIdx)}
-                className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${cls}`}
-              >
-                <span className="font-medium mr-2">{String.fromCharCode(65 + oIdx)}.</span>
-                {opt}
-              </button>
+              <div key={sIdx} className="bg-card rounded-xl border-2 border-primary/20 p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Brain className="w-5 h-5 text-primary" />
+                  <span className="font-heading font-semibold text-foreground">
+                    Scenario {allScenarios.length > 1 ? sIdx + 1 : ""}
+                  </span>
+                </div>
+                <div className="bg-primary/5 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-foreground leading-relaxed">{sq.scenario}</p>
+                </div>
+                <p className="font-medium text-foreground mb-3">{sq.question}</p>
+                <div className="space-y-2 mb-3">
+                  {sq.options.map((opt, oIdx) => {
+                    let cls = "border border-border bg-muted/30 hover:bg-muted/60";
+                    if (sRevealed && oIdx === sq.correctIndex) cls = "border-green-500 bg-green-50 text-green-800";
+                    else if (sRevealed && oIdx === sAnswer && oIdx !== sq.correctIndex) cls = "border-red-400 bg-red-50 text-red-700";
+                    else if (sAnswer === oIdx && !sRevealed) cls = "border-primary bg-primary/10";
+                    return (
+                      <button
+                        key={oIdx}
+                        onClick={() => !sRevealed && setScenarioAnswers((p) => ({ ...p, [sIdx]: oIdx }))}
+                        className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${cls}`}
+                      >
+                        <span className="font-medium mr-2">{String.fromCharCode(65 + oIdx)}.</span>
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+                {!sRevealed ? (
+                  <button
+                    onClick={() => sAnswer !== undefined && setScenarioRevealed((p) => ({ ...p, [sIdx]: true }))}
+                    disabled={sAnswer === undefined}
+                    className="text-sm font-medium text-primary hover:underline disabled:opacity-40 disabled:no-underline"
+                  >
+                    Check Answer
+                  </button>
+                ) : (
+                  <div className="flex items-start gap-2 mt-2">
+                    {sAnswer === sq.correctIndex ? (
+                      <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                    ) : (
+                      <XCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    )}
+                    <p className="text-sm text-muted-foreground">{sq.explanation}</p>
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
-        {!scenarioRevealed ? (
-          <button
-            onClick={() => scenarioAnswer !== null && setScenarioRevealed(true)}
-            disabled={scenarioAnswer === null}
-            className="text-sm font-medium text-primary hover:underline disabled:opacity-40 disabled:no-underline"
-          >
-            Check Answer
-          </button>
-        ) : (
-          <div className="flex items-start gap-2 mt-2">
-            {scenarioAnswer === scenarioQuestion.correctIndex ? (
-              <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            ) : (
-              <XCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
-            )}
-            <p className="text-sm text-muted-foreground">{scenarioQuestion.explanation}</p>
+      )}
+
+      {/* Long-form questions */}
+      {longQuestions && longQuestions.length > 0 && (
+        <div>
+          <h3 className="font-heading text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <div className="w-1 h-6 rounded-full hero-gradient" />
+            Long-Form Questions
+          </h3>
+          <div className="space-y-3">
+            {longQuestions.map((lq, lIdx) => {
+              const open = openLong[lIdx];
+              return (
+                <div key={lIdx} className="bg-card rounded-xl border border-border overflow-hidden">
+                  <button
+                    onClick={() => setOpenLong((p) => ({ ...p, [lIdx]: !p[lIdx] }))}
+                    className="w-full text-left px-6 py-4 flex items-start justify-between gap-4 hover:bg-muted/40 transition-colors"
+                  >
+                    <span className="font-heading font-semibold text-foreground">
+                      Q{lIdx + 1}. {lq.question}
+                    </span>
+                    <span className="text-primary font-medium text-sm flex-shrink-0 mt-0.5">
+                      {open ? "Hide" : "Show"} Answer
+                    </span>
+                  </button>
+                  {open && (
+                    <div className="px-6 pb-5 pt-1 border-t border-border bg-muted/20">
+                      <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                        {lq.answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
