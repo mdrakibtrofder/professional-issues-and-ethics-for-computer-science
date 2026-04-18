@@ -138,16 +138,25 @@ interface ScenarioQuestion {
   explanation: string;
 }
 
-interface QuizSectionProps {
-  questions: QuizQuestion[];
-  scenarioQuestion: ScenarioQuestion;
+interface LongQuestion {
+  question: string;
+  answer: string;
 }
 
-export function QuizSection({ questions, scenarioQuestion }: QuizSectionProps) {
+interface QuizSectionProps {
+  questions: QuizQuestion[];
+  scenarioQuestion?: ScenarioQuestion;
+  scenarioQuestions?: ScenarioQuestion[];
+  longQuestions?: LongQuestion[];
+}
+
+export function QuizSection({ questions, scenarioQuestion, scenarioQuestions, longQuestions }: QuizSectionProps) {
+  const allScenarios: ScenarioQuestion[] = scenarioQuestions ?? (scenarioQuestion ? [scenarioQuestion] : []);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
-  const [scenarioAnswer, setScenarioAnswer] = useState<number | null>(null);
-  const [scenarioRevealed, setScenarioRevealed] = useState(false);
+  const [scenarioAnswers, setScenarioAnswers] = useState<Record<number, number>>({});
+  const [scenarioRevealed, setScenarioRevealed] = useState<Record<number, boolean>>({});
+  const [openLong, setOpenLong] = useState<Record<number, boolean>>({});
 
   const handleSelect = (qIdx: number, optIdx: number) => {
     if (revealed[qIdx]) return;

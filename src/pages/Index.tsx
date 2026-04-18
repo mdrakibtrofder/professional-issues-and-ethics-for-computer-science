@@ -144,7 +144,7 @@ const Index = () => {
         <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground mb-5">
           <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" /> 13 Chapters</span>
           <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Self-paced</span>
-          <span className="flex items-center gap-1"><Award className="w-3 h-3" /> Certificate-ready</span>
+          
         </div>
         <Link
           to={chapters[0].path}
