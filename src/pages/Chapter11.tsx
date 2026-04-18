@@ -65,13 +65,43 @@ const Chapter11 = () => {
           { question: "How do businesses use social networking?", options: ["Only for hiring employees", "For internal collaboration, brand presence, and crowdsourcing", "Only for advertising", "Businesses don't use social networking"], correctIndex: 1, explanation: "Businesses use social networking for internal collaboration, building brand presence, engaging customers, and crowdsourcing ideas." },
           { question: "Cyberbullying specifically involves:", options: ["Adults bullying children in schools", "Harassment of one minor by another via the Internet or cell phone", "Any online disagreement", "Spam emails"], correctIndex: 1, explanation: "Cyberbullying is specifically the harassment, torment, humiliation, or threatening of one minor by another minor or group of minors via the Internet or cell phone." },
         ]}
-        scenarioQuestion={{
-          scenario: "A popular social media platform discovers that its targeted advertising algorithm is showing predatory loan ads disproportionately to low-income users and gambling ads to users who have searched for 'gambling addiction help.' The ads are technically legal and highly profitable for the platform.",
-          question: "What is the most ethical course of action for the platform?",
-          options: ["Continue showing the ads since they are legal and profitable", "Modify the algorithm to prevent targeting vulnerable users with harmful ads", "Only change if regulators force them to", "Add a small disclaimer to the ads"],
-          correctIndex: 1,
-          explanation: "Even though the ads are legal, ethically the platform should modify its algorithm to prevent targeting vulnerable populations with potentially harmful content. Profitability does not justify exploitation."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "A popular social media platform discovers that its targeted advertising algorithm is showing predatory loan ads disproportionately to low-income users and gambling ads to users who have searched for 'gambling addiction help.' The ads are technically legal and highly profitable for the platform.",
+            question: "What is the most ethical course of action for the platform?",
+            options: ["Continue showing the ads since they are legal and profitable", "Modify the algorithm to prevent targeting vulnerable users with harmful ads", "Only change if regulators force them to", "Add a small disclaimer to the ads"],
+            correctIndex: 1,
+            explanation: "Even though the ads are legal, ethically the platform should modify its algorithm to prevent targeting vulnerable populations with potentially harmful content. Profitability does not justify exploitation."
+          },
+          {
+            scenario: "A 14-year-old is repeatedly mocked in a private group chat. Classmates create a fake profile impersonating her, post embarrassing edited photos, and send her threatening messages from anonymous accounts. She becomes withdrawn and refuses to attend school.",
+            question: "Which forms of cyberbullying are present in this scenario?",
+            options: ["Only impersonation", "Threatening messages, impersonation, posting humiliating content — all classic forms of cyberbullying", "It's not cyberbullying because it's a 'private' chat", "Only if it happens in person"],
+            correctIndex: 1,
+            explanation: "Cyberbullying takes many forms — threatening messages, impersonation via fake profiles, and humiliating content all qualify. Private channels do not change the harm caused to the victim."
+          },
+          {
+            scenario: "A B2B company wants to use social networking strategically. The CMO proposes using internal collaboration tools, building a strong public brand presence, and crowdsourcing product ideas from customers — but warns that without a clear plan it could waste resources.",
+            question: "Which combination of business applications is the CMO recommending?",
+            options: ["Only paid advertising", "Internal Networking, Brand Presence, and Crowdsourcing — three classic business applications of social networking", "Only customer support", "Replacing all email with social media"],
+            correctIndex: 1,
+            explanation: "Internal networking, brand presence, and crowdsourcing are three well-recognised business applications of social networking — each delivering distinct value when used intentionally."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "What is a social networking website and how does it differ from traditional websites?",
+            answer: "A social networking website creates an online community of internet users, enabling members to break down barriers of time, distance, and culture. Members can share opinions, insights, information, interests, and experiences, and use the platform to interact with people they already know (friends, family, colleagues) as well as develop new personal and professional relationships.\n\nIt differs from traditional websites in several ways: (1) Content is primarily user-generated rather than published by the site owner; (2) The core value comes from connections between users, not the site's content itself (Metcalfe's law); (3) Identity is central — most members have personal profiles; (4) Interaction is two-way and continuous (likes, comments, shares, messages) rather than one-way consumption; (5) Algorithms personalise what each user sees; (6) The platform enables network effects, where each new user makes the platform more valuable for everyone else; and (7) Business models typically rely on monetising user attention and data, raising distinctive ethical concerns."
+          },
+          {
+            question: "Discuss the major business applications of social networking and their benefits.",
+            answer: "1. Internal networking — using enterprise social tools (e.g., Slack, Microsoft Viva, Workplace) to enhance collaboration, knowledge sharing, and culture among employees. Benefits: faster communication, breaking down silos, preserving institutional knowledge, supporting remote and hybrid work.\n\n2. Brand presence — engaging directly with customers on public platforms to build awareness, loyalty, and community support. Benefits: humanising the brand, reaching customers where they already are, gathering real-time feedback, and converting satisfied customers into advocates.\n\n3. Customer service — providing support through social channels where customers expect rapid responses. Benefits: faster resolution, public demonstration of care, opportunity to turn complaints into positive stories.\n\n4. Crowdsourcing — gathering ideas, feedback, and even content from customers and the public to fuel innovation and product development. Benefits: tapping into a wide pool of creativity, validating ideas before investment, and increasing customer ownership of new features.\n\n5. Recruitment — leveraging professional networks (LinkedIn) for hiring. Benefits: access to passive candidates and richer context than a CV alone.\n\n6. Targeted advertising and influencer marketing — reaching precise demographics with measurable campaigns. Together these applications turn social platforms into strategic business tools rather than just marketing channels."
+          },
+          {
+            question: "Explain the various forms of cyberbullying and discuss what individuals, schools, and platforms can do to combat it.",
+            answer: "Cyberbullying is the harassment, torment, humiliation, or threatening of one minor by another minor or group of minors via the Internet or cell phone. Common forms include: sending threatening messages; flooding the victim's phone with thousands of texts; sending inappropriate messages to others on the victim's behalf; stealing the victim's password and modifying their profile; posting mean, personal, or false information about the victim on blogs or social media; creating fake profiles designed to humiliate or threaten the victim; sharing private images without consent; exclusion from online groups; and organised group harassment ('pile-ons').\n\nCombating cyberbullying requires layered action: (1) Individuals — preserve evidence (screenshots), do not retaliate, block and report perpetrators, talk to a trusted adult, and seek support. (2) Schools — teach digital citizenship and empathy, maintain clear anti-bullying policies that explicitly cover online behaviour, train staff to recognise warning signs, and provide accessible counselling and reporting channels. (3) Parents — maintain open communication, set age-appropriate boundaries on device use, model respectful online behaviour, and monitor changes in mood. (4) Platforms — design easy reporting flows, respond quickly to reports, deploy AI to detect abusive content, enforce real consequences, give users powerful blocking and privacy tools, and design products that minimise opportunities for abuse. (5) Society and government — pass clear laws, fund mental-health support for victims, and run awareness campaigns. The combined effort recognises that cyberbullying is a public-health issue, not just a personal one."
+          }
+        ]}
       />
     </CourseLayout>
   );
