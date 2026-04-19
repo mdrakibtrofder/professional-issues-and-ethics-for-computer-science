@@ -103,14 +103,49 @@ const Chapter10 = () => {
           { question: "What does CI/CD stand for?", options: ["Computer Integration/Computer Delivery", "Continuous Integration/Continuous Delivery", "Code Inspection/Code Deployment", "Central Infrastructure/Central Database"], correctIndex: 1, explanation: "CI/CD stands for Continuous Integration and Continuous Delivery — automating the build, test, and deployment pipeline." },
           { question: "What is a key advantage of microservices over monolithic architecture?", options: ["Simpler initial development", "Services can be scaled independently", "Lower network complexity", "Requires fewer developers"], correctIndex: 1, explanation: "Microservices allow scaling only the parts of the system under heavy load, optimizing resources and costs." },
           { question: "What is the primary purpose of a load balancer?", options: ["To store data backups", "To distribute incoming requests across multiple servers", "To encrypt network traffic", "To monitor employee activity"], correctIndex: 1, explanation: "Load balancers distribute incoming requests across multiple servers to ensure high availability, reliability, and efficiency." },
+          { question: "What does SCM (Software Configuration Management) primarily track?", options: ["Employee schedules", "Changes to source code, builds, and releases over time", "Server temperatures", "Marketing campaigns"], correctIndex: 1, explanation: "SCM tracks and controls changes to software artifacts, supporting versioning, branching, and reproducible builds." },
+          { question: "Auto-scaling is most useful for:", options: ["Static brochure sites", "Workloads with variable or unpredictable demand", "Single-user desktop apps", "Offline batch jobs only"], correctIndex: 1, explanation: "Auto-scaling automatically adds or removes resources to match demand, ideal for variable workloads." },
+          { question: "A monolithic architecture is generally PREFERRED when:", options: ["The team is huge and globally distributed", "The application is small/simple and the team is small", "Independent scaling of each feature is required", "Polyglot tech stacks are needed"], correctIndex: 1, explanation: "Monoliths are simpler to develop, test, and deploy when the system and team are small — microservices add complexity that pays off at scale." },
+          { question: "DevOps primarily seeks to:", options: ["Replace developers with operators", "Bridge development and operations through automation, collaboration, and continuous feedback", "Eliminate testing", "Outsource infrastructure"], correctIndex: 1, explanation: "DevOps unifies dev and ops via shared tooling, automation, and culture to deliver software faster and more reliably." },
+          { question: "A canary release is a deployment strategy that:", options: ["Deploys to all users at once", "Rolls out a change to a small subset of users first to detect issues", "Only deploys at night", "Deploys without testing"], correctIndex: 1, explanation: "Canary releases expose new versions to a small percentage of traffic first, limiting blast radius if problems occur." },
         ]}
-        scenarioQuestion={{
-          scenario: "An e-commerce company uses a monolithic architecture. During Black Friday, their checkout service crashes under heavy load, bringing down the entire website including product browsing, user accounts, and customer support chat. The CTO proposes migrating to microservices.",
-          question: "Why would microservices have prevented this total outage?",
-          options: ["Microservices are faster than monoliths", "Each service is independent — checkout crashing wouldn't affect product browsing or other services", "Microservices don't need servers", "Microservices automatically fix bugs"],
-          correctIndex: 1,
-          explanation: "In a microservices architecture, services are independent. A checkout crash would be isolated, while product browsing, accounts, and other services continue to function normally."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "An e-commerce company uses a monolithic architecture. During Black Friday, their checkout service crashes under heavy load, bringing down the entire website including product browsing, user accounts, and customer support chat. The CTO proposes migrating to microservices.",
+            question: "Why would microservices have prevented this total outage?",
+            options: ["Microservices are faster than monoliths", "Each service is independent — checkout crashing wouldn't affect product browsing or other services", "Microservices don't need servers", "Microservices automatically fix bugs"],
+            correctIndex: 1,
+            explanation: "In a microservices architecture, services are independent. A checkout crash would be isolated, while product browsing, accounts, and other services continue to function normally."
+          },
+          {
+            scenario: "A team deploys to production manually once a month. Each release is risky, takes a full day, and often introduces bugs. They consider adopting CI/CD with automated tests and gradual rollouts.",
+            question: "What is the most direct benefit of CI/CD here?",
+            options: ["Lower cloud costs", "Smaller, more frequent, automatically tested releases that reduce risk and speed up feedback", "Replacing the QA team", "Eliminating the need for monitoring"],
+            correctIndex: 1,
+            explanation: "CI/CD automates build, test, and deploy steps, allowing small frequent releases. Smaller changes are easier to test, faster to roll back, and reduce overall release risk."
+          },
+          {
+            scenario: "A streaming service experiences traffic spikes during live events. During quiet hours, the same fixed servers run idle and cost the company a lot of money.",
+            question: "Which scalability approach best fits this pattern?",
+            options: ["Manual scaling once a week", "Auto Scaling — automatically adding and removing servers based on real-time demand, paired with a Load Balancer", "Buying more permanent hardware", "Removing the live event feature"],
+            correctIndex: 1,
+            explanation: "Auto Scaling matches capacity to demand, while a Load Balancer distributes traffic across the active instances. Together they provide elastic capacity at minimum cost."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "What is Software Configuration Management (SCM) and why is it essential for scalable software development?",
+            answer: "Software Configuration Management is the discipline of systematically tracking and controlling changes to software artefacts — source code, configuration files, dependencies, documentation, and infrastructure definitions — throughout the software lifecycle. SCM provides version control (typically via Git), branching and merging strategies, baseline integrity, change control processes, accountability (who changed what, when, and why), and the ability to recover any previous state.\n\nSCM is essential for scalable development because: (1) large teams cannot collaborate safely without it; (2) it enables parallel work via branches and merges; (3) it provides a single source of truth for what is in production; (4) it underpins CI/CD pipelines, code reviews, and automated testing; (5) it supports auditability and compliance; (6) it allows rapid rollback when defects are introduced; and (7) modern infrastructure-as-code practices treat infrastructure with the same rigour as application code, all managed through SCM."
+          },
+          {
+            question: "Explain the DevOps lifecycle and the role of CI/CD within it.",
+            answer: "The DevOps lifecycle is a continuous loop that integrates development and operations to deliver software faster, more reliably, and with higher quality. Common phases include: Plan → Code → Build → Test → Release → Deploy → Operate → Monitor — feeding back into Plan.\n\nContinuous Integration (CI) automates the Build and Test phases: every commit triggers an automated pipeline that compiles the code, runs unit and integration tests, performs static analysis, and produces a deployable artefact. Continuous Delivery (CD) automates the Release and Deploy phases so that any commit that passes tests can be deployed to production with the push of a button (or automatically — Continuous Deployment).\n\nCI/CD's role is to provide a fast, reliable, and repeatable path from a developer's commit to a customer-facing change. It reduces release risk by deploying small increments, enables rapid feedback, supports experimentation (feature flags, canary deploys), and underpins the cultural shift in DevOps where developers and operations share responsibility for quality and reliability."
+          },
+          {
+            question: "Compare monolithic and microservices architectures, including advantages, disadvantages, and when each is appropriate.",
+            answer: "A monolithic architecture packages all functionality into a single deployable unit sharing one codebase, one database, and one deployment process. Advantages: simpler initial development, easier debugging, lower operational overhead, faster local development, and straightforward transactions. Disadvantages: a single change requires redeploying everything; scaling means scaling the whole app even if only one part is hot; technology choices are locked in; large teams step on each other; and a single failure can take down the entire system.\n\nA microservices architecture decomposes the system into small, independent services aligned with business capabilities, each owned by a small team, with its own data store and deployment pipeline. Advantages: independent scaling, independent deployments, polyglot technology choices, fault isolation, and team autonomy. Disadvantages: higher operational complexity, distributed-system challenges (network latency, partial failures), more complex testing, eventual consistency instead of ACID transactions, and the need for mature DevOps, observability, and service-discovery tooling.\n\nWhen to choose: monolith is appropriate for early-stage products, small teams, simple domains, and when speed of iteration matters more than independent scaling. Microservices are appropriate when the system is large, the organisation has multiple teams that need autonomy, different parts have very different scaling needs, and the team has the operational maturity to run a distributed system. Many successful systems begin as a well-structured monolith and extract microservices only when concrete pain points justify the added complexity."
+          }
+        ]}
       />
     </CourseLayout>
   );

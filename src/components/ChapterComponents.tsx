@@ -133,21 +133,31 @@ interface QuizQuestion {
 interface ScenarioQuestion {
   scenario: string;
   question: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string;
+  answer?: string;
+  // Legacy fields (used as fallback for the answer)
+  options?: string[];
+  correctIndex?: number;
+  explanation?: string;
+}
+
+interface LongQuestion {
+  question: string;
+  answer: string;
 }
 
 interface QuizSectionProps {
   questions: QuizQuestion[];
-  scenarioQuestion: ScenarioQuestion;
+  scenarioQuestion?: ScenarioQuestion;
+  scenarioQuestions?: ScenarioQuestion[];
+  longQuestions?: LongQuestion[];
 }
 
-export function QuizSection({ questions, scenarioQuestion }: QuizSectionProps) {
+export function QuizSection({ questions, scenarioQuestion, scenarioQuestions, longQuestions }: QuizSectionProps) {
+  const allScenarios: ScenarioQuestion[] = scenarioQuestions ?? (scenarioQuestion ? [scenarioQuestion] : []);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
-  const [scenarioAnswer, setScenarioAnswer] = useState<number | null>(null);
-  const [scenarioRevealed, setScenarioRevealed] = useState(false);
+  const [openLong, setOpenLong] = useState<Record<number, boolean>>({});
+  const [openScenario, setOpenScenario] = useState<Record<number, boolean>>({});
 
   const handleSelect = (qIdx: number, optIdx: number) => {
     if (revealed[qIdx]) return;
@@ -167,103 +177,146 @@ export function QuizSection({ questions, scenarioQuestion }: QuizSectionProps) {
         Test Your Knowledge
       </h2>
 
-      <div className="space-y-4 mb-6">
-        {questions.map((q, qIdx) => {
-          const isRevealed = revealed[qIdx];
-          const selected = answers[qIdx];
-          return (
-            <div key={qIdx} className="bg-card rounded-xl border border-border p-6">
-              <p className="font-heading font-semibold text-foreground mb-3">
-                {qIdx + 1}. {q.question}
-              </p>
-              <div className="space-y-2 mb-3">
-                {q.options.map((opt, oIdx) => {
-                  let cls = "border border-border bg-muted/30 hover:bg-muted/60";
-                  if (isRevealed && oIdx === q.correctIndex) cls = "border-green-500 bg-green-50 text-green-800";
-                  else if (isRevealed && oIdx === selected && oIdx !== q.correctIndex) cls = "border-red-400 bg-red-50 text-red-700";
-                  else if (selected === oIdx && !isRevealed) cls = "border-primary bg-primary/10";
-                  return (
-                    <button
-                      key={oIdx}
-                      onClick={() => handleSelect(qIdx, oIdx)}
-                      className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${cls}`}
-                    >
-                      <span className="font-medium mr-2">{String.fromCharCode(65 + oIdx)}.</span>
-                      {opt}
-                    </button>
-                  );
-                })}
-              </div>
-              {!isRevealed ? (
-                <button
-                  onClick={() => handleReveal(qIdx)}
-                  disabled={selected === undefined}
-                  className="text-sm font-medium text-primary hover:underline disabled:opacity-40 disabled:no-underline"
-                >
-                  Check Answer
-                </button>
-              ) : (
-                <div className="flex items-start gap-2 mt-2">
-                  {selected === q.correctIndex ? (
-                    <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                  ) : (
-                    <XCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+      {/* Long-form questions FIRST */}
+      {longQuestions && longQuestions.length > 0 && (
+        <div className="mb-8">
+          <h3 className="font-heading text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <div className="w-1 h-6 rounded-full hero-gradient" />
+            Long-Form Questions
+          </h3>
+          <div className="space-y-3">
+            {longQuestions.map((lq, lIdx) => {
+              const open = openLong[lIdx];
+              return (
+                <div key={lIdx} className="bg-card rounded-xl border border-border overflow-hidden">
+                  <button
+                    onClick={() => setOpenLong((p) => ({ ...p, [lIdx]: !p[lIdx] }))}
+                    className="w-full text-left px-6 py-4 flex items-start justify-between gap-4 hover:bg-muted/40 transition-colors"
+                  >
+                    <span className="font-heading font-semibold text-foreground">
+                      Q{lIdx + 1}. {lq.question}
+                    </span>
+                    <span className="text-primary font-medium text-sm flex-shrink-0 mt-0.5">
+                      {open ? "Hide" : "Show"} Answer
+                    </span>
+                  </button>
+                  {open && (
+                    <div className="px-6 pb-5 pt-1 border-t border-border bg-muted/20">
+                      <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                        {lq.answer}
+                      </p>
+                    </div>
                   )}
-                  <p className="text-sm text-muted-foreground">{q.explanation}</p>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Scenario-based question */}
-      <div className="bg-card rounded-xl border-2 border-primary/20 p-6">
-        <div className="flex items-center gap-2 mb-3">
-          <Brain className="w-5 h-5 text-primary" />
-          <span className="font-heading font-semibold text-foreground">Scenario-Based Question</span>
-        </div>
-        <div className="bg-primary/5 rounded-lg p-4 mb-4">
-          <p className="text-sm text-foreground leading-relaxed">{scenarioQuestion.scenario}</p>
-        </div>
-        <p className="font-medium text-foreground mb-3">{scenarioQuestion.question}</p>
-        <div className="space-y-2 mb-3">
-          {scenarioQuestion.options.map((opt, oIdx) => {
-            let cls = "border border-border bg-muted/30 hover:bg-muted/60";
-            if (scenarioRevealed && oIdx === scenarioQuestion.correctIndex) cls = "border-green-500 bg-green-50 text-green-800";
-            else if (scenarioRevealed && oIdx === scenarioAnswer && oIdx !== scenarioQuestion.correctIndex) cls = "border-red-400 bg-red-50 text-red-700";
-            else if (scenarioAnswer === oIdx && !scenarioRevealed) cls = "border-primary bg-primary/10";
-            return (
-              <button
-                key={oIdx}
-                onClick={() => !scenarioRevealed && setScenarioAnswer(oIdx)}
-                className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${cls}`}
-              >
-                <span className="font-medium mr-2">{String.fromCharCode(65 + oIdx)}.</span>
-                {opt}
-              </button>
-            );
-          })}
-        </div>
-        {!scenarioRevealed ? (
-          <button
-            onClick={() => scenarioAnswer !== null && setScenarioRevealed(true)}
-            disabled={scenarioAnswer === null}
-            className="text-sm font-medium text-primary hover:underline disabled:opacity-40 disabled:no-underline"
-          >
-            Check Answer
-          </button>
-        ) : (
-          <div className="flex items-start gap-2 mt-2">
-            {scenarioAnswer === scenarioQuestion.correctIndex ? (
-              <CheckCircle2 className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-            ) : (
-              <XCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
-            )}
-            <p className="text-sm text-muted-foreground">{scenarioQuestion.explanation}</p>
+              );
+            })}
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Scenario-based long-form questions SECOND */}
+      {allScenarios.length > 0 && (
+        <div className="mb-8">
+          <h3 className="font-heading text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <div className="w-1 h-6 rounded-full hero-gradient" />
+            <Brain className="w-5 h-5 text-primary" />
+            Scenario-Based Questions
+          </h3>
+          <div className="space-y-4">
+            {allScenarios.map((sq, sIdx) => {
+              const open = openScenario[sIdx];
+              const answer = sq.answer ?? sq.explanation ?? "";
+              return (
+                <div key={sIdx} className="bg-card rounded-xl border-2 border-primary/20 overflow-hidden">
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="font-heading font-semibold text-foreground">
+                        Scenario {allScenarios.length > 1 ? sIdx + 1 : ""}
+                      </span>
+                    </div>
+                    <div className="bg-primary/5 rounded-lg p-4 mb-4">
+                      <p className="text-sm text-foreground leading-relaxed">{sq.scenario}</p>
+                    </div>
+                    <p className="font-medium text-foreground mb-3">{sq.question}</p>
+                    <button
+                      onClick={() => setOpenScenario((p) => ({ ...p, [sIdx]: !p[sIdx] }))}
+                      className="text-sm font-medium text-primary hover:underline"
+                    >
+                      {open ? "Hide" : "Show"} Answer
+                    </button>
+                  </div>
+                  {open && (
+                    <div className="px-6 pb-5 pt-4 border-t border-border bg-muted/20">
+                      <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+                        {answer}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* MCQs LAST */}
+      {questions && questions.length > 0 && (
+        <div>
+          <h3 className="font-heading text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <div className="w-1 h-6 rounded-full hero-gradient" />
+            Multiple Choice Questions
+          </h3>
+          <div className="space-y-4">
+            {questions.map((q, qIdx) => {
+              const isRevealed = revealed[qIdx];
+              const selected = answers[qIdx];
+              return (
+                <div key={qIdx} className="bg-card rounded-xl border border-border p-6">
+                  <p className="font-heading font-semibold text-foreground mb-3">
+                    {qIdx + 1}. {q.question}
+                  </p>
+                  <div className="space-y-2 mb-3">
+                    {q.options.map((opt, oIdx) => {
+                      let cls = "border border-border bg-muted/30 hover:bg-muted/60";
+                      if (isRevealed && oIdx === q.correctIndex) cls = "border-accent bg-accent/10 text-foreground";
+                      else if (isRevealed && oIdx === selected && oIdx !== q.correctIndex) cls = "border-destructive bg-destructive/10 text-foreground";
+                      else if (selected === oIdx && !isRevealed) cls = "border-primary bg-primary/10";
+                      return (
+                        <button
+                          key={oIdx}
+                          onClick={() => handleSelect(qIdx, oIdx)}
+                          className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-colors ${cls}`}
+                        >
+                          <span className="font-medium mr-2">{String.fromCharCode(65 + oIdx)}.</span>
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {!isRevealed ? (
+                    <button
+                      onClick={() => handleReveal(qIdx)}
+                      disabled={selected === undefined}
+                      className="text-sm font-medium text-primary hover:underline disabled:opacity-40 disabled:no-underline"
+                    >
+                      Check Answer
+                    </button>
+                  ) : (
+                    <div className="flex items-start gap-2 mt-2">
+                      {selected === q.correctIndex ? (
+                        <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                      ) : (
+                        <XCircle className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
+                      )}
+                      <p className="text-sm text-muted-foreground">{q.explanation}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

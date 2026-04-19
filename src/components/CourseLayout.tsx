@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { ChapterSidebar } from "./ChapterSidebar";
-import { Menu, X, BookOpen } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import ethicsLogo from "@/assets/ethics-logo.png";
 
 interface CourseLayoutProps {
   children: ReactNode;
@@ -27,12 +28,10 @@ export function CourseLayout({ children }: CourseLayoutProps) {
       >
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg hero-gradient flex items-center justify-center">
-              <BookOpen className="w-4 h-4 text-accent-foreground" />
-            </div>
+            <img src={ethicsLogo} alt="Professional Issues & Ethics For Computer Science logo" width={36} height={36} className="w-9 h-9 object-contain" />
             <div>
-              <h2 className="font-heading font-bold text-sm text-foreground">CSE 4215</h2>
-              <p className="text-xs text-muted-foreground">Ethics in IT</p>
+              <h2 className="font-heading font-bold text-sm text-foreground leading-tight">Professional Issues</h2>
+              <p className="text-xs text-muted-foreground">& Ethics · CS</p>
             </div>
           </div>
           <button
@@ -55,9 +54,12 @@ export function CourseLayout({ children }: CourseLayoutProps) {
             >
               <Menu className="w-5 h-5 text-foreground" />
             </button>
-            <h1 className="font-heading font-bold text-lg text-foreground truncate">
-              Professional Issues & Ethics in Computer Science
-            </h1>
+            <img src={ethicsLogo} alt="Professional Issues & Ethics For Computer Science logo" width={40} height={40} className="w-10 h-10 object-contain flex-shrink-0" />
+            <div className="min-w-0">
+              <h1 className="font-heading font-bold text-base lg:text-lg text-foreground truncate leading-tight">
+                Professional Issues & Ethics For Computer Science
+              </h1>
+            </div>
           </div>
         </header>
         <main className="p-4 lg:p-8 max-w-5xl mx-auto">{children}</main>

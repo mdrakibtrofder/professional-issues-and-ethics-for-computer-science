@@ -162,14 +162,49 @@ const Chapter2 = () => {
           { question: "What is Applied Ethics?", options: ["A branch of mathematics", "The practical application of ethical principles to real-world situations", "The study of ancient philosophy", "A type of programming paradigm"], correctIndex: 1, explanation: "Applied Ethics specifically evaluates the outcomes and consequences of moral decisions in real-world situations." },
           { question: "What is a 'value conflict' in ethical decision-making?", options: ["A bug in software code", "A situation where one must choose between two legitimate but opposing values", "A disagreement about salary", "A conflict between two programming languages"], correctIndex: 1, explanation: "A value conflict involves choosing between two or more core values in direct opposition — often between two legitimate 'goods' rather than right vs. wrong." },
           { question: "Which of the following is a 'fabrication' as a form of lie?", options: ["A joke told among friends", "A simplified explanation for non-technical people", "A statement not based on fact presented as truth", "A harmless white lie"], correctIndex: 2, explanation: "Fabrication is making a statement that is not based on fact, such as claiming work has been done when it hasn't." },
+          { question: "What best describes a 'norm'?", options: ["A personal opinion", "An informal rule or expected behavior shared within a group", "A mathematical constant", "A government law"], correctIndex: 1, explanation: "Norms are the unwritten, shared expectations of behavior in a group, organization, or culture." },
+          { question: "Corporate culture most directly influences ethics by:", options: ["Setting the salary structure", "Shaping what behaviors are rewarded, tolerated, or punished", "Choosing the office furniture", "Defining the dress code only"], correctIndex: 1, explanation: "Culture signals which behaviors are acceptable; ethical breakdowns often trace back to a culture that tolerates or rewards them." },
+          { question: "Which is the BEST definition of a value?", options: ["A short-term goal", "A deeply held belief about what is important or worthwhile", "A rule imposed by management", "A measurable performance metric"], correctIndex: 1, explanation: "Values are enduring beliefs that guide judgments and actions across many situations." },
+          { question: "Ethical decision-making is MOST difficult when:", options: ["The right choice is obvious", "Two legitimate values conflict and any choice has costs", "There is no time pressure", "Everyone in the team agrees"], correctIndex: 1, explanation: "Genuine ethical dilemmas involve competing 'goods' — not simply right vs. wrong — making them inherently hard." },
+          { question: "An attitude differs from a belief in that an attitude:", options: ["Is always negative", "Is an evaluative stance (like/dislike) toward something, while a belief is what one accepts as true", "Cannot change over time", "Is the same as a value"], correctIndex: 1, explanation: "Beliefs are accepted as true; attitudes are evaluative orientations (favorable/unfavorable) toward people, ideas, or things." },
         ]}
-        scenarioQuestion={{
-          scenario: "A project manager discovers that a junior developer has been reporting '100% test coverage' in sprint reports, when in reality the tests only cover the happy path and ignore edge cases. The PM confronts the developer, who says 'Technically all my test files pass, so coverage is 100%.'",
-          question: "Which form of lie best describes the developer's behavior?",
-          options: ["White lie", "Lying by omission", "Bluffing", "Jocose lie"],
-          correctIndex: 1,
-          explanation: "This is lying by omission — leaving out the important fact that the tests don't cover edge cases. The developer's statement is technically true but deliberately misleading."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "A project manager discovers that a junior developer has been reporting '100% test coverage' in sprint reports, when in reality the tests only cover the happy path and ignore edge cases. The PM confronts the developer, who says 'Technically all my test files pass, so coverage is 100%.'",
+            question: "Which form of lie best describes the developer's behavior?",
+            options: ["White lie", "Lying by omission", "Bluffing", "Jocose lie"],
+            correctIndex: 1,
+            explanation: "This is lying by omission — leaving out the important fact that the tests don't cover edge cases. The developer's statement is technically true but deliberately misleading."
+          },
+          {
+            scenario: "A software architect must decide between two designs: Design A is more secure but requires retraining the team and delays delivery by two months; Design B meets the deadline but has known privacy weaknesses. The CEO strongly values 'speed-to-market', while the architect personally values 'user privacy'.",
+            question: "This situation best illustrates which ethical concept?",
+            options: ["A factual disagreement", "A value conflict between competing legitimate values", "Corporate culture violation", "A simple compliance issue"],
+            correctIndex: 1,
+            explanation: "It is a value conflict — both 'speed-to-market' and 'user privacy' are legitimate values, but they pull the decision in opposing directions. The architect must use ethical decision-making to choose."
+          },
+          {
+            scenario: "A new employee joins a company where employees routinely share confidential client data over informal chat to 'get work done faster'. Managers tolerate it because it saves time, even though the official policy forbids it. The new employee is unsure how to behave.",
+            question: "What does this scenario reveal about the company?",
+            options: ["The official policy is irrelevant", "There is a gap between the stated culture and the actual corporate culture (norms vs. behaviors)", "The employee should ignore the policy", "There is no ethical issue"],
+            correctIndex: 1,
+            explanation: "Corporate culture is shaped by actual behaviors and accepted norms, not just written policies. A gap between the two indicates an unhealthy culture that can normalize unethical behavior."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "Explain the relationship between Attitudes, Beliefs, Behaviors, Norms, and Values, and how they collectively influence ethical decision-making.",
+            answer: "Beliefs are ideas accepted as true and form the foundation of attitudes. Attitudes are personal evaluations (positive, negative, or neutral) shaped by beliefs and influence how a person feels about issues. Behaviors are the observable actions a person takes — usually a direct outcome of their attitudes. Norms are the accepted standards of conduct in a group that reinforce what behaviors are acceptable. Values are the principles a person considers important and guide personal and professional judgments.\n\nIn ethical decision-making, beliefs and values shape one's attitudes toward a situation; norms supply the social context; and the resulting behavior is the visible ethical choice. A professional with strong values (e.g., honesty), informed beliefs (e.g., transparency builds trust), and a positive attitude toward ethical conduct will behave ethically even when group norms tempt otherwise."
+          },
+          {
+            question: "Describe the steps of an ethical decision-making process and explain why each step matters.",
+            answer: "1. Get the facts — without verified facts, even innocent situations can become controversies. 2. Identify stakeholders — recognize all parties who stand to gain or lose so their interests are considered. 3. Consider the consequences — predict outcomes to maximize good and minimize harm. 4. Weigh guidelines and principles — apply legal, corporate, and ethical frameworks (laws, employee handbook, principles like honesty and justice). 5. Develop and evaluate options — generate ethically defensible alternatives instead of accepting only the obvious one. 6. Review the decision — re-examine it from each stakeholder's point of view to test fairness and integrity.\n\nEach step matters because skipping any one (e.g., ignoring stakeholders or skipping a final review) often produces decisions that are technically legal but ethically poor."
+          },
+          {
+            question: "What are the different forms of lies, and why is recognizing them important in a professional context?",
+            answer: "Common forms include: White lies (small, harmless lies often to spare feelings); Lying by omission (deliberately leaving out important facts); Bluffing (pretending to know or to do something one doesn't); Fabrication (stating something not based on fact as truth); Jocose lies (lies told as jokes); Bold-faced lies (obvious untruths despite clear evidence); and Perjury (lying under oath).\n\nRecognizing these forms is critical professionally because (a) many workplace deceptions are subtle (omission, bluffing) and not obvious lies, (b) even small lies erode the trust that the profession depends on, and (c) lies in technical reports, audits, or testing can have serious safety, financial, and legal consequences. Professionals must be trained to identify and avoid all forms — not only outright fabrications."
+          }
+        ]}
       />
     </CourseLayout>
   );

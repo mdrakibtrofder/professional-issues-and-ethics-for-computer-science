@@ -155,14 +155,49 @@ const Chapter1 = () => {
           { question: "What distinguishes a profession from a vocation?", options: ["Higher salary", "Extensive training, ethical codes, and regulation by governing bodies", "Working in an office", "Having a university degree"], correctIndex: 1, explanation: "A profession requires extensive training, adherence to ethical codes, and regulation by professional bodies, unlike a vocation which is more of a calling or aptitude." },
           { question: "Which of the following is a recognized professional body for IT professionals?", options: ["FIFA", "BCS (British Computer Society)", "WHO", "UNESCO"], correctIndex: 1, explanation: "BCS is the leading professional body for IT professionals, granting Chartered IT Professional (CITP) status." },
           { question: "What does CPD stand for in a professional context?", options: ["Corporate Product Development", "Continuous Professional Development", "Computer Programming Diploma", "Certified Professional Degree"], correctIndex: 1, explanation: "CPD stands for Continuous Professional Development — the ongoing process of developing skills and knowledge throughout a career." },
+          { question: "Which is the highest professional status granted by the BCS?", options: ["Member (MBCS)", "Chartered IT Professional (CITP)", "Associate", "Student Member"], correctIndex: 1, explanation: "Chartered IT Professional (CITP) is the gold standard granted by the BCS, recognizing competence, ethics, and commitment to CPD." },
+          { question: "Why is public trust central to a profession?", options: ["It increases marketing reach", "Society relies on professionals to act competently and ethically in matters affecting safety and welfare", "It guarantees higher salaries", "It eliminates the need for regulation"], correctIndex: 1, explanation: "Professionals hold specialized knowledge that the public cannot easily verify, so trust depends on competence, ethics, and accountability." },
+          { question: "Which of the following is NOT typically a characteristic of a profession?", options: ["A recognized code of ethics", "Specialized training and credentials", "Self-regulation through a governing body", "Guaranteed lifetime employment"], correctIndex: 3, explanation: "Professions are defined by training, ethics, and self-regulation — not by employment guarantees." },
+          { question: "Why must computing professionals prioritize public welfare?", options: ["Because the law requires it in every country", "Because software increasingly affects safety, privacy, and critical infrastructure", "Because clients always demand it", "Because it improves company branding"], correctIndex: 1, explanation: "Modern software touches healthcare, transport, finance, and privacy — so professional decisions have direct public-welfare consequences." },
+          { question: "Which activity best represents Continuous Professional Development?", options: ["Attending a one-off team meeting", "Regularly learning new tools, attending conferences, and reflecting on practice", "Completing a single university degree", "Reading the company handbook once"], correctIndex: 1, explanation: "CPD is ongoing and structured — continually building skills, knowledge, and ethical awareness throughout one's career." },
         ]}
-        scenarioQuestion={{
-          scenario: "A software company hires a talented self-taught developer who has no formal degree or professional membership. The developer writes excellent code but refuses to follow the company's code of conduct, saying 'I'm not a member of any professional body, so codes of ethics don't apply to me.'",
-          question: "What is the most appropriate response to this situation?",
-          options: ["Accept the developer's argument since they have no formal obligations", "Explain that professional conduct applies to all employees regardless of formal membership", "Fire the developer immediately", "Ignore the situation as long as the code quality remains high"],
-          correctIndex: 1,
-          explanation: "Professional conduct and ethical behavior are expected of all computing practitioners, not just those with formal memberships. Workplace codes of conduct apply to all employees."
-        }}
+        scenarioQuestions={[
+          {
+            scenario: "A software company hires a talented self-taught developer who has no formal degree or professional membership. The developer writes excellent code but refuses to follow the company's code of conduct, saying 'I'm not a member of any professional body, so codes of ethics don't apply to me.'",
+            question: "What is the most appropriate response to this situation?",
+            options: ["Accept the developer's argument since they have no formal obligations", "Explain that professional conduct applies to all employees regardless of formal membership", "Fire the developer immediately", "Ignore the situation as long as the code quality remains high"],
+            correctIndex: 1,
+            explanation: "Professional conduct and ethical behavior are expected of all computing practitioners, not just those with formal memberships. Workplace codes of conduct apply to all employees."
+          },
+          {
+            scenario: "An IT consultant is hired by a small business to set up their network. Midway through the project, the consultant realizes the chosen architecture is inadequate for the client's growth plans, but admitting this would mean redoing weeks of paid work. The client has no technical expertise to verify the work.",
+            question: "What does professional integrity require?",
+            options: ["Continue silently — the client won't know the difference", "Disclose the issue, explain the implications, and propose a corrected plan", "Finish the inadequate setup and blame future issues on the client's growth", "Quietly walk away from the project"],
+            correctIndex: 1,
+            explanation: "Trust in professionals depends on honesty and accountability. Disclosing the limitation, even at personal cost, upholds integrity and the client's right to informed decisions."
+          },
+          {
+            scenario: "A senior engineer is asked to mentor a new graduate. The graduate is eager but lacks knowledge of professional standards and CPD. The senior is busy with deadlines and tempted to skip mentoring duties.",
+            question: "Why is mentoring considered a professional responsibility?",
+            options: ["It is a legal requirement everywhere", "Professionals have a duty to develop the next generation and uphold the standards of the profession", "Only managers must mentor", "Mentoring is optional and unrelated to ethics"],
+            correctIndex: 1,
+            explanation: "Professional bodies expect members to support continuous professional development of others — sharing knowledge sustains the integrity and trustworthiness of the profession."
+          }
+        ]}
+        longQuestions={[
+          {
+            question: "Differentiate between a profession and a vocation, and explain why computing is increasingly considered a profession.",
+            answer: "A vocation is a calling, trade, or aptitude — typically learned on the job and not regulated by a formal body (e.g., a craftsman or salesperson). A profession, in contrast, requires extensive specialized training, adherence to a recognized code of ethics, and is often regulated by a professional governing body that grants certification (e.g., doctors, lawyers, chartered engineers).\n\nComputing is increasingly considered a profession because: (1) it requires deep, formal technical training and lifelong learning; (2) computing professionals make decisions that significantly impact public safety, privacy, and finance; (3) recognized bodies such as the BCS, ACM, and IEEE-CS publish codes of ethics and grant chartered status (CITP); and (4) society increasingly trusts computing professionals to act competently and ethically, just as it does doctors or engineers."
+          },
+          {
+            question: "Why do we trust professionals, and what mechanisms sustain that trust in the computing field?",
+            answer: "We trust professionals because they (a) demonstrate verified competence through education and certification, (b) commit to a code of ethics that prioritizes the public interest, (c) are accountable to a governing body that can sanction misconduct, and (d) engage in Continuous Professional Development (CPD) to keep their skills current.\n\nIn computing, this trust is sustained through: professional bodies (BCS, ACM, IEEE-CS) issuing codes of conduct; certifications (CITP, CISSP, PMP) verifying competence; CPD requirements ensuring practitioners stay current with rapidly evolving technology; peer review and open standards ensuring transparency; and disciplinary procedures that hold practitioners accountable for negligence or unethical behavior."
+          },
+          {
+            question: "Discuss the role of professional bodies in shaping ethical practice in IT, with examples.",
+            answer: "Professional bodies serve as the backbone of ethical IT practice by: (1) defining standards of competence and conduct; (2) issuing codes of ethics that members must follow; (3) granting certifications that signal trustworthiness to employers and clients; (4) facilitating Continuous Professional Development; and (5) providing disciplinary mechanisms.\n\nExamples include: the British Computer Society (BCS), which grants Chartered IT Professional (CITP) status and publishes a Code of Conduct; the Association for Computing Machinery (ACM), which maintains the widely-cited ACM Code of Ethics and Professional Conduct; and the IEEE Computer Society, which jointly developed the Software Engineering Code of Ethics. These organizations also influence policy, education curricula, and public understanding of IT, ensuring the profession serves society responsibly."
+          }
+        ]}
       />
     </CourseLayout>
   );

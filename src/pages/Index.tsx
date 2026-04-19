@@ -48,11 +48,8 @@ const Index = () => {
       <div className="relative overflow-hidden rounded-2xl hero-gradient p-8 lg:p-14 mb-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNnKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')] opacity-50" />
         <div className="relative">
-          <span className="inline-block px-3 py-1 rounded-full bg-primary-foreground/20 text-primary-foreground text-sm font-medium mb-4">
-            CSE 4215 — Spring 2026
-          </span>
           <h1 className="font-heading text-4xl lg:text-5xl font-bold text-primary-foreground mb-4">
-            Ethics in Information Technology
+            Professional Issues & Ethics For Computer Science
           </h1>
           <p className="text-primary-foreground/80 text-lg max-w-2xl mb-6">
             A comprehensive course exploring professional ethics, legal issues, and social responsibility in the world of computer science and information technology.
@@ -144,7 +141,7 @@ const Index = () => {
         <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground mb-5">
           <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" /> 13 Chapters</span>
           <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Self-paced</span>
-          <span className="flex items-center gap-1"><Award className="w-3 h-3" /> Certificate-ready</span>
+          
         </div>
         <Link
           to={chapters[0].path}
