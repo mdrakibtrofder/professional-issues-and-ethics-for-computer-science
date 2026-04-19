@@ -133,9 +133,11 @@ interface QuizQuestion {
 interface ScenarioQuestion {
   scenario: string;
   question: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string;
+  answer: string;
+  // Legacy fields (ignored if present)
+  options?: string[];
+  correctIndex?: number;
+  explanation?: string;
 }
 
 interface LongQuestion {
