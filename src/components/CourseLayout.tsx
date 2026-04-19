@@ -28,10 +28,10 @@ export function CourseLayout({ children }: CourseLayoutProps) {
       >
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-2">
-            <img src={ethicsLogo} alt="Professional Ethics in CS logo" width={36} height={36} className="w-9 h-9 object-contain" />
+            <img src={ethicsLogo} alt="Professional Issues & Ethics For Computer Science logo" width={36} height={36} className="w-9 h-9 object-contain" />
             <div>
-              <h2 className="font-heading font-bold text-sm text-foreground">CSE 4215</h2>
-              <p className="text-xs text-muted-foreground">Ethics in IT</p>
+              <h2 className="font-heading font-bold text-sm text-foreground leading-tight">Professional Issues</h2>
+              <p className="text-xs text-muted-foreground">& Ethics · CS</p>
             </div>
           </div>
           <button
@@ -54,12 +54,11 @@ export function CourseLayout({ children }: CourseLayoutProps) {
             >
               <Menu className="w-5 h-5 text-foreground" />
             </button>
-            <img src={ethicsLogo} alt="Professional Ethics in CS logo" width={40} height={40} className="w-10 h-10 object-contain flex-shrink-0" />
+            <img src={ethicsLogo} alt="Professional Issues & Ethics For Computer Science logo" width={40} height={40} className="w-10 h-10 object-contain flex-shrink-0" />
             <div className="min-w-0">
               <h1 className="font-heading font-bold text-base lg:text-lg text-foreground truncate leading-tight">
-                Professional Issues & Ethics
+                Professional Issues & Ethics For Computer Science
               </h1>
-              <p className="text-xs text-muted-foreground truncate">Computer Science · CSE 4215</p>
             </div>
           </div>
         </header>
